@@ -21,12 +21,6 @@ app.get('/api/books',(req,res)=>{
     res.send(books)
 });
 
-app.get('/api/books/:id',(req,res)=>{
-    const books = book.find(c => c.id === parseInt(req.params.id));
-
-    if(!book) res.status(404).send('Cant find what you are looking for!</h2>');
-    res.send(book); 
-})
 
 const port = process.env.PORT || 8080;
 app.listen(port, () => console.log(`Listening on port ${port}..`));
