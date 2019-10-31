@@ -12,9 +12,9 @@ const books = [
 ]
 
 //Read Request Handlers
-app.get('/', (req, res) => {
-    res.send('Welcome to Edurekas REST API with Node.js Tutorial!!');
-});
+// app.get('/', (req, res) => {
+//     res.send('Welcome to Edurekas REST API with Node.js Tutorial!!');
+// });
 
 app.get('/api/books',(req,res)=>{
     console.log( books );  
