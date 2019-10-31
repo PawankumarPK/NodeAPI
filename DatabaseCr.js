@@ -1,29 +1,45 @@
-const sqlite3 = require('sqlite3').verbose();
+var sqlite3 = require('sqlite3').verbose();
+var db;
 
-let db = new sqlite3.Database('./user1.db', sqlite3.OPEN_READWRITE |sqlite3.OPEN_CREATE, 
-(err) => {
-    if (err) {
-      console.error(err.message);
+function createDb() {
+    console.log("createDb chain");
+    db = new sqlite3.Database('./chain.db', createTable);
+}
+
+
+function createTable() {
+    console.log("createTable lorem");
+    db.run("CREATE TABLE IF NOT EXISTS lorem (info TEXT)", insertRows);
+}
+
+function insertRows() {
+    console.log("insertRows Ipsum i");
+    var stmt = db.prepare("INSERT INTO lorem VALUES (?)");
+
+    for (var i = 0; i < 10; i++) {
+        stmt.run("Ipsum " + i);
     }
-    console.log('Connected to the chinook database.');
-  });   
 
-let languages = ['C++', 'Python', 'Java', 'C#', 'Go'];
- 
-// construct the insert statement with multiple placeholders
-// based on the number of rows
-let placeholders = languages.map((language) => '(?)').join(',');
-let sql = 'INSERT INTO langs(name) VALUES ' + placeholders;
- 
-// output the INSERT statement
-console.log(sql);
- 
-db.run(sql, languages, function(err) {
-  if (err) {
-    return console.error(err.message);
-  }
-  console.log(`Rows inserted ${this.changes}`);
-});
- 
-// close the database connection
-db.close();
+    stmt.finalize(readAllRows);
+}
+
+function readAllRows() {
+    console.log("readAllRows lorem");
+    db.all("SELECT rowid AS id, info FROM lorem", function(err, rows) {
+        rows.forEach(function (row) {
+            console.log(row.id + ": " + row.info);
+        });
+        closeDb();
+    });
+}
+
+function closeDb() {
+    console.log("closeDb");
+    db.close();
+}
+
+function runChainExample() {
+    createDb();
+}
+
+runChainExample();
