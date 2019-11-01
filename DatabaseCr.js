@@ -6,7 +6,6 @@ function createDb() {
     db = new sqlite3.Database('./chain.db', createTable);
 }
 
-
 function createTable() {
     console.log("createTable lorem");
     db.run("CREATE TABLE IF NOT EXISTS lorem (info TEXT)", insertRows);
