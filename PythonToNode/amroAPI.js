@@ -21,8 +21,6 @@ let sql = `SELECT  CreatedOn FROM device_stats
             });
           });
           
-
-
 //Api created
 app.get("/api/users", (req, res, next) => {
     let sql = `SELECT CreatedOn FROM device_stats `;  
