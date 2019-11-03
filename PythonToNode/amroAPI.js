@@ -45,6 +45,3 @@ app.get("/api/users", (req, res, next) => {
 
 const port = process.env.PORT || 8080;
 app.listen(port, () => console.log(`Listening on port ${port}..`));
-
-
-//SELECT rooms.Id,rooms.Name FROM rooms WHERE FloorId=?''',(floorId,)
