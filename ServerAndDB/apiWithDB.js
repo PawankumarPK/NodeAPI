@@ -12,31 +12,31 @@ app.listen(HTTP_PORT, () => {
     console.log("Server running on port %PORT%".replace("%PORT%",HTTP_PORT))
 });
 
-//Root endpoint
-// app.get("/api/users", (req, res, next) => {
-//     var sql = "select * from user"
-//     var params = []
-//     db.all(sql,params,(err,rows) => {
+//Get All Users
+app.get("/api/users", (req, res, next) => {
+    var sql = "select * from user"
+    var params = []
+    db.all(sql,params,(err,rows) => {
 
-//         if (err) {
-//             res.status(400).json({"error":err.message})
-//             return;
-//         }
-//         res.json({
-//             "message" : "Success",
-//             "data" : rows
-//         })  
+        if (err) {
+            res.status(400).json({"error":err.message})
+            return;
+        }
+        res.json({
+            "message" : "Success",
+            "data" : rows
+        })  
 
-//     });
+    });
     
-// });
+});
 
 //Get User by id
 app.get("/api/user/:id", (req, res, next) => {
     var sql = "select * from user where id = ?"
     var params = [req.params.id]
     db.get(sql, params, (err, row) => {
-        if (err) {  
+        if (err) {
           res.status(400).json({"error":err.message});
           return;
         }
