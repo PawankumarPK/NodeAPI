@@ -275,7 +275,6 @@ function create_new_trip(){
         return;
       }
       res.json({
-        "message": "Success",
         "data": rows
       })
     })
@@ -308,7 +307,6 @@ function move(){
         return;
       }
       res.json({
-        "message": "Success",
         "data": rows
       })
     })
