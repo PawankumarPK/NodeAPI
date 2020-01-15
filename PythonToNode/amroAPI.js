@@ -85,8 +85,6 @@ function get_floor_and_rooms(data) {
 
 }
 
-
-
 //
 function get_floors() {
   app.get("/floors", (req, res) => {

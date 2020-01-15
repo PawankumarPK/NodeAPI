@@ -1,29 +1,56 @@
 {
-   "user1" : {
-      "name" : "pawan",
-      "password" : "password1",
-      "profession" : "teacher",
-      "id": 1
-   },
-   
-   "user2" : {
-      "name" : "yadav",
-      "password" : "password2",
-      "profession" : "librarian",
-      "id": 2
-   },
-   
-   "user3" : {
-      "name" : "pankaj",
-      "password" : "password3",
-      "profession" : "clerk",
-      "id": 3
-   },
- 
-   "user4" : {
-      "name" : "mohit",
-      "password" : "password4",
-      "profession" : "teacher",
-      "id": 4
-   }
+   "count": 3,
+   "data": [
+      {
+         "mac": "00:00:00:00:00:00",
+         "stats": {
+            "battery": {
+               "P": -1
+            },
+            "screens": [
+               "sar.server",
+               "sar.core"
+            ]
+         },
+         "joinstamp": 1575281193956,
+         "updatestamp": 1575286052771
+      },
+      {
+         "mac": "00:1e:06:42:14:52",
+         "stats": {
+            "battery": {
+               "P": -24,
+               "V": 22727,
+               "I": -1066,
+               "CE": -1728,
+               "SOC": 920
+            },
+            "screens": [
+               "sar.server",
+               "sar.core"
+            ]
+         },
+         "joinstamp": 1575496145248,
+         "updatestamp": 1575499426337
+      },
+      {
+         "mac": "00:1e:06:42:00:68",
+         "stats": {
+            "battery": {
+               "V": 26354,
+               "I": -1204,
+               "P": -32,
+               "CE": -9938,
+               "SOC": 529
+            },
+            "screens": [
+               "sar.server",
+               "sar.core",
+               "sar.arya_face_detect"
+            ]
+         },
+         "joinstamp": 1575539198261,
+         "updatestamp": 1575539450877
+      }
+   ]
 }
