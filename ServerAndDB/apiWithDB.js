@@ -10,6 +10,10 @@ var bodyParser = require("body-parser")
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json())
 
+//file upload
+var upload = require("express-fileupload")
+app.use(upload())
+
 
 //Server port
 var HTTP_PORT = 9000
@@ -82,10 +86,75 @@ app.post("/api/user/",(req,res,next) => {
             "message": "success",
             "data": data,
             "id": this.lastID
-
         })
     })
 })
+
+
+app.patch("/api/user/:id", (req, res, next) => {
+    var data = {
+        name: req.body.name,
+        email: req.body.email,
+        password: req.body.password ? md5(req.body.password) : null
+    }
+
+    db.run(
+        `update user set
+        name = COALESCE(?,name),
+        email = COALESCE(?,email),
+        password = COALESCE(?,password)
+        WHERE id = ?`,
+        [data.name, data.email, data.password, req.params.id],
+        function (err, result) {
+            if (err) {
+                res.status(400).json({ "error": res.message })
+                return
+            }
+            res.json({
+                message: "Success",
+                data: data,
+                changes: this.changes
+            })
+        })
+
+})
+
+app.delete("/api/user/:id", (req, res, next) => {
+    db.run('delete from user where id = ?',
+        req.params.id,
+        function (err, result) {
+            if (err) {
+                res.status(400).json("error", res.message)
+                return
+            }
+            res.json({
+                "message": "Success",
+                changes: this.changes
+            })
+
+        })
+})
+
+//upload files
+app.post("/upload", function (req, res, next) {
+    const file = req.files.photo
+    file.mv("./fileUploads/" + file.name, function (err, result) {
+        if (err)
+            throw err;
+        res.send({
+            success: true,
+            message: "File uploaded"
+        })
+    })
+
+    // console.log(req.files)
+    // res.send({
+    //     success : true,
+    //     "message" : "File uploaded"
+    // })
+
+})
+
 
 
 //Insert here other API endpoint
